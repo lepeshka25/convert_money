@@ -9,27 +9,11 @@ class StockChartWithRangeSelector extends Component {
 	}
 	 
 	  componentDidMount() {
-		fetch("https://www.akchabar.kg/media/rates/usd.js", {
-			method: 'GET',
-		})
-		  .then(res => res.json())
-			.then(res => res.data)
-		  .then(
-			(data) => {
-
-				var dps = data?.map(([dateMilSec , num]) => {
-					const date = new Date(dateMilSec)
-					return {
-						x: date,
-						y: num
-					}
-				})
-			  this.setState({
-					isLoaded: true,
-					dataPoints: dps
-			  });
-			}
-		  )
+			console.log(this.props.props.props[0].valet)
+			this.setState({
+				isLoaded: true,
+				dataPoints: this.props.props.props
+	  	});
 	  }
 	 
 	  render() {
@@ -55,11 +39,11 @@ class StockChartWithRangeSelector extends Component {
 				}
 			},
 		  title:{
-			text:"Покупка доллара"
+				text: `Покупка ${this.props.props.props[0].valet}`
 		  },
 		  theme: "light2",
 		  subtitles: [{
-			text: "KG/USD"
+			text: this.props.props.props[0].kod
 		  }],
 		  charts: [{
 			axisX: {
@@ -82,10 +66,10 @@ class StockChartWithRangeSelector extends Component {
 			  shared: true
 			},
 			data: [{
-			  name: "Покупка",
+			  name: `Покупка ${this.props.props.props[0].valet}`,
 			  type: "splineArea",
 			  color: "#3576a8",
-			  yValueFormatString: "#,###.##",
+			  yValueFormatString: this.props.props.props[0].valet !== 'тенге' ? "#,###.####" : '0.####',
 			  xValueFormatString: "MMM DD YYYY",
 			  dataPoints : this.state.dataPoints
 			}]
@@ -117,3 +101,26 @@ class StockChartWithRangeSelector extends Component {
   }
 
 export default StockChartWithRangeSelector;
+
+
+// fetch("https://www.akchabar.kg/media/rates/usd.js", {
+// 	method: 'GET',
+// })
+//   .then(res => res.json())
+// 	.then(res => res.data)
+//   .then(
+// 	(data) => {
+//
+// 		var dps = data?.map(([dateMilSec , num]) => {
+// 			const date = new Date(dateMilSec)
+// 			return {
+// 				x: date,
+// 				y: num
+// 			}
+// 		})
+// 	  this.setState({
+// 			isLoaded: true,
+// 			dataPoints: dps
+// 	  });
+// 	}
+// 	)

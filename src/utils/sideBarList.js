@@ -18,7 +18,7 @@ export const sideBarList = [
 	},
 	{
 		id: 4,
-		title: 'Диаграмма эвро',
+		title: 'Диаграмма евро',
 		path: '/#calculator4'
 	},
 	{

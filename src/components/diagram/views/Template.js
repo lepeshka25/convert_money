@@ -6,10 +6,14 @@ import NumericAxisStockChart from "./stockchart/StockChart with Range Selector";
 
 class Template extends Component {
 
+	constructor(props) {
+		super(props)
+	}
+
 	render() {
 		return (
 			<div style={{width: '100%' , height: '100%'}}>
-				<NumericAxisStockChart/>
+				<NumericAxisStockChart props={this.props}/>
 			</div>
 		);
 	}

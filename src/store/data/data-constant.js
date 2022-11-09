@@ -1,0 +1,4 @@
+export const ADD_DATA_DOLLAR = 'ADD_DATA_DOLLAR';
+export const ADD_DATA_EURO = 'ADD_DATA_EURO';
+export const ADD_DATA_RUBLE = 'ADD_DATA_RUBLE';
+export const ADD_DATA_TENGE = 'ADD_DATA_TENGE';
