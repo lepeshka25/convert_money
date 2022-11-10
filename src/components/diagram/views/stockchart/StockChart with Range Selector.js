@@ -59,7 +59,7 @@ class StockChartWithRangeSelector extends Component {
 			  crosshair: {
 				enabled: true,
 				snapToDataPoint: true,
-				valueFormatString: "#,###.##"
+				valueFormatString: this.props.props.props[0].valet !== 'тенге' ? "#,###.####" : '0.####'
 			  }
 			},
 			toolTip: {
