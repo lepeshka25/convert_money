@@ -1,0 +1,35 @@
+.calculator {
+  @media (max-width: 768px) {
+    width: 85%;
+    margin: 0 auto;
+  }
+  
+  @media (min-width: 768px) {
+    width: 600px;
+    padding: 30px;
+    border: 1px solid rgba(128, 128, 128, 0.2);
+    border-radius: 10px;
+  }
+
+  
+  @media (min-width: 768px) {
+    .title {
+
+    }
+
+    .container_calculator {
+
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .title {
+
+    }
+
+    .container_calculator {
+
+    }
+  }
+
+}

@@ -1,20 +1,18 @@
 import React from 'react';
-import CustomSelect from "../../UI/CustomSelect";
+import Calculator from "./components/Calculator";
 import cs from './style.module.scss'
 
 const Main = () => {
 	return (
 		<div className={cs.main}>
 
-			<div className={cs.container_select}>
-				<CustomSelect/>
-			</div>
+			<Calculator/>
 
 		</div>
 	);
 };
 
-export default Main;
+export default React.memo(Main);
 
 
 {/*<Header/>*/}
