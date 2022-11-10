@@ -88,11 +88,10 @@ class StockChartWithRangeSelector extends Component {
 		return (
 		  <div> 
 			  {
-				// Reference: https://reactjs.org/docs/conditional-rendering.html#inline-if-with-logical--operator
-				this.state.isLoaded && 
-				<CanvasJSStockChart containerProps={containerProps} options = {options}
-				  /* onRef = {ref => this.chart = ref} */
-				/>
+					this.state.isLoaded &&
+					<CanvasJSStockChart containerProps={containerProps} options = {options}
+
+					/>
 			  }
 		  </div>
 		);
@@ -100,26 +99,3 @@ class StockChartWithRangeSelector extends Component {
   }
 
 export default StockChartWithRangeSelector;
-
-
-// fetch("https://www.akchabar.kg/media/rates/usd.js", {
-// 	method: 'GET',
-// })
-//   .then(res => res.json())
-// 	.then(res => res.data)
-//   .then(
-// 	(data) => {
-//
-// 		var dps = data?.map(([dateMilSec , num]) => {
-// 			const date = new Date(dateMilSec)
-// 			return {
-// 				x: date,
-// 				y: num
-// 			}
-// 		})
-// 	  this.setState({
-// 			isLoaded: true,
-// 			dataPoints: dps
-// 	  });
-// 	}
-// 	)
