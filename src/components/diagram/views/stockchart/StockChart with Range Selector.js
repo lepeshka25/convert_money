@@ -9,7 +9,6 @@ class StockChartWithRangeSelector extends Component {
 	}
 	 
 	  componentDidMount() {
-			console.log(this.props.props.props[0].valet)
 			this.setState({
 				isLoaded: true,
 				dataPoints: this.props.props.props

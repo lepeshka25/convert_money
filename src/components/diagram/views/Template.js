@@ -6,9 +6,9 @@ import NumericAxisStockChart from "./stockchart/StockChart with Range Selector";
 
 class Template extends Component {
 
-	constructor(props) {
-		super(props)
-	}
+	// constructor(props) {
+	// 	super(props)
+	// }
 
 	render() {
 		return (
