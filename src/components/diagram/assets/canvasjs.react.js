@@ -1,60 +1,51 @@
-/*
-CanvasJS React Charts - https://canvasjs.com/
-Copyright 2022 fenopix
+import React, { Component } from 'react';
+import CanvasJSReact from './canvasjs.stock.react';
+import {useSelector} from "react-redux";
+import {store} from "../../../store";
+var CanvasJS = CanvasJSReact.CanvasJS;
+var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
---------------------- License Information --------------------
-CanvasJS is a commercial product which requires purchase of license. Without a commercial license you can use it for evaluation purposes for upto 30 days. Please refer to the following link for further details.
-https://canvasjs.com/license/
-
-*/
-
-var React = require('react');
-var CanvasJS = require('./canvasjs.min');
-CanvasJS = CanvasJS.Chart ? CanvasJS : window.CanvasJS;
-
-class CanvasJSChart extends React.Component {
-	static _cjsContainerId = 0
-	constructor(props) {
-		super(props);
-		this.options = props.options ? props.options : {};
-		this.containerProps = props.containerProps ? { ...props.containerProps } : { width: "100%", position: "relative" };
-		this.containerProps.height = props.containerProps && props.containerProps.height ? props.containerProps.height : this.options.height ? this.options.height + "px" : "400px";
-		this.chartContainerId = "canvasjs-react-chart-container-" + CanvasJSChart._cjsContainerId++;
-	}
+class LineChart extends Component {
 	componentDidMount() {
-		//Create Chart and Render
-		this.chart = new CanvasJS.Chart(this.chartContainerId, this.options);
-		this.chart.render();
+		const data = this.props.data.DOLLAR
+		this.dataBase = data?.slice(data.length - 15 , data.length)
+	}
 
-		if (this.props.onRef)
-			this.props.onRef(this.chart);
-	}
-	shouldComponentUpdate(nextProps, nextState) {
-		//Check if Chart-options has changed and determine if component has to be updated
-		return !(nextProps.options === this.options);
-	}
-	componentDidUpdate() {
-		//Update Chart Options & Render
-		this.chart.options = this.props.options;
-		this.chart.render();
-	}
-	componentWillUnmount() {
-		//Destroy chart and remove reference
-		if (this.chart)
-			this.chart.destroy();
-
-		if (this.props.onRef)
-			this.props.onRef(undefined);
-	}
 	render() {
-		//return React.createElement('div', { id: this.chartContainerId, style: this.containerProps });
-		return <div id={this.chartContainerId} style={this.containerProps} />
+		const options = {
+			animationEnabled: true,
+			// exportEnabled: true,
+			theme: "light2", // "light1", "dark1", "dark2"
+			title:{
+				// text: "Bounce Rate by Week of Year"
+			},
+			axisY: {
+				// title: "Bounce Rate",
+				// suffix: "%"
+			},
+			axisX: {
+				crosshair: {
+					enabled: true,
+					snapToDataPoint: true,
+					valueFormatString: "MMM DD"
+				},
+				// title: "Week of Year",
+				interval: 2,
+				valueFormatString: "MMM DD"
+			},
+			data: [{
+				type: "line",
+				// toolTipContent: "y: <span>{y}</span> , x: <span>{x}</span>",
+				toolTipContent: "{x}: {y}",
+				dataPoints: this.dataBase
+			}]
+		}
+		return (
+			<div>
+				<CanvasJSChart options = {options}/>
+			</div>
+		);
 	}
 }
 
-var CanvasJSReact = {
-	CanvasJSChart: CanvasJSChart,
-	CanvasJS: CanvasJS
-};
-
-export default CanvasJSReact;
+export default LineChart;

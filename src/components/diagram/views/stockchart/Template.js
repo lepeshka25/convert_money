@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import NumericAxisStockChart from "./stockchart/StockChart with Range Selector";
+import NumericAxisStockChart from "./StockChart with Range Selector";
 
 class Template extends Component {
 

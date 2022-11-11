@@ -47,9 +47,9 @@ class StockChartWithRangeSelector extends Component {
 		  charts: [{
 			axisX: {
 			  crosshair: {
-				enabled: true,
-				snapToDataPoint: true,
-				valueFormatString: "MMM DD YYYY"
+					enabled: true,
+					snapToDataPoint: true,
+					valueFormatString: "MMM DD YYYY"
 			  }
 			},
 			axisY: {
