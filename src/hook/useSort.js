@@ -1,13 +1,14 @@
 const useSort = (data, valet, kod) => {
+	const sliceData = data.slice(data.length - 365 , data.length)
 
-	const newData = data.map(([dateMilSec , sum]) => ({
+	const newData = sliceData?.map(([dateMilSec , sum]) => ({
 		x: new Date(dateMilSec),
 		y: sum,
 		valet,
 		kod
 	}))
 
-	return newData.slice(newData.length - 365 , newData.length)
+	return newData
 }
 
 export default useSort;
