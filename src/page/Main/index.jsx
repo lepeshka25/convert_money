@@ -2,7 +2,7 @@ import React from 'react';
 import cs from './style.module.scss'
 import {useSelector} from "react-redux";
 import Template from "../../components/diagram/views/stockchart/Template";
-import Calculator from "./components/Calculator";
+// import Calculator from "./components/Calculator";
 import LineChart from "../../components/diagram/assets/canvasjs.react";
 
 const Main = () => {

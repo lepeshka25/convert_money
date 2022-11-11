@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import CanvasJSReact from './canvasjs.stock.react';
-import {useSelector} from "react-redux";
-import {store} from "../../../store";
-var CanvasJS = CanvasJSReact.CanvasJS;
+// var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 class LineChart extends Component {
