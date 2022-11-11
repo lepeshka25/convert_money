@@ -1,0 +1,1 @@
+export const progressSelect = (state) => state.progress

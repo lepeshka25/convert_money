@@ -6,7 +6,7 @@ const Main = () => {
 	return (
 		<div className={cs.main}>
 
-			<Calculator/>
+			<Calculator title={'Покупка'}/>
 
 		</div>
 	);
