@@ -6,68 +6,76 @@ import {useSelector} from "react-redux";
 import {countriesSelect} from "../../../../store/countries/countries-select";
 import cs from './style.module.scss'
 
-const Calculator = ({title}) => {
+const Calculator = () => {
 	const [inputOne , setInputOne] = React.useState(0)
 	const [inputTwo , setInputTwo] = React.useState(0)
 	const [stateValueOne , setStateValueOne] = React.useState(0)
 	const [stateValueTwo , setStateValueTwo] = React.useState(0)
-	const [countries , setCountries] = React.useState({})
+
+	const [selectValue , setSelectValue] = React.useState({})
 
 	const data = useSelector(countriesSelect)
 
 	React.useEffect(() => {
-		if(countries.one === countries.two){
+		if(selectValue.one === selectValue.two){
 			setStateValueTwo(inputOne)
 			setStateValueOne(inputOne)
-		}else if(countries.one === "KGS"){
-			setStateValueTwo((inputOne / data[countries.two]?.money).toFixed(5))
+		}else if(selectValue.one === "KGS"){
+			setStateValueTwo((inputOne / data[selectValue.two]?.money).toFixed(5))
 			setStateValueOne(inputOne)
-		}else if(countries.two === "KGS"){
-			setStateValueTwo((inputOne * data[countries.one]?.money).toFixed(5))
+		}else if(selectValue.two === "KGS"){
+			setStateValueTwo((inputOne * data[selectValue.one]?.money).toFixed(5))
 			setStateValueOne(inputOne)
-		}else if(countries.one && countries.two) {
-			setStateValueTwo((inputOne * data[countries.one]?.money / data[countries.two]?.money).toFixed(5))
+		}else if(selectValue.one && selectValue.two) {
+			setStateValueTwo((inputOne * data[selectValue.one]?.money / data[selectValue.two]?.money).toFixed(5))
 			setStateValueOne(inputOne)
 		}else {
 			setStateValueTwo(0)
 			setStateValueOne(0)
 		}
-	}, [inputOne, countries])
+	}, [inputOne, selectValue])
 
 	React.useEffect(() => {
-		if(countries.one === countries.two){
+		if(selectValue.one === selectValue.two){
 			setStateValueOne(inputTwo)
 			setStateValueTwo(inputTwo)
-		}else if(countries.one === "KGS"){
-			setStateValueOne((inputTwo * data[countries.two]?.money).toFixed(5))
+		}else if(selectValue.one === "KGS"){
+			setStateValueOne((inputTwo * data[selectValue.two]?.money).toFixed(5))
 			setStateValueTwo(inputTwo)
-		}else if(countries.two === "KGS"){
-			setStateValueOne((inputTwo / data[countries.one]?.money).toFixed(5))
+		}else if(selectValue.two === "KGS"){
+			setStateValueOne((inputTwo / data[selectValue.one]?.money).toFixed(5))
 			setStateValueTwo(inputTwo)
-		}else if(countries.one && countries.two) {
-			setStateValueOne((inputTwo / data[countries.one]?.money * data[countries.two]?.money).toFixed(5))
+		}else if(selectValue.one && selectValue.two) {
+			setStateValueOne((inputTwo / data[selectValue.one]?.money * data[selectValue.two]?.money).toFixed(5))
 			setStateValueTwo(inputTwo)
 		}else {
 			setStateValueTwo(0)
 			setStateValueOne(0)
 		}
-	}, [inputTwo, countries])
+	}, [inputTwo, selectValue])
 
-	function SelectOne(data){
-		setCountries({...countries , one: data})
+	function changeSelect(){
+		setSelectValue({
+			one: selectValue.two,
+			two: selectValue.one,
+		})
 	}
 
-	function SelectTwo(data){
-		setCountries({...countries , two: data})
+	function getSelectValueOne(data){
+		setSelectValue({...selectValue , one: data})
+	}
+
+	function getSelectValueTwo(data){
+		setSelectValue({...selectValue , two: data})
 	}
 
 	return (
 		<div className={cs.calculator}>
 			{
-				countries.one
-					? countries.two
+				selectValue.one
+					? selectValue.two
 						? (
-								<h1 className={cs.title}>{data[countries.one]?.title} в {data[countries.two]?.title}</h1>
+								<h1 className={cs.title}>{data[selectValue.one]?.title} в {data[selectValue.two]?.title}</h1>
 							)
 						: null
 					: null
@@ -77,7 +85,7 @@ const Calculator = ({title}) => {
 				<div className={cs.calculator1}>
 
 					<div className={cs.container_select}>
-						<CustomSelect get={SelectOne}/>
+						<CustomSelect setState={getSelectValueOne} state={selectValue.one}/>
 					</div>
 
 					<div className={cs.container_input}>
@@ -86,7 +94,7 @@ const Calculator = ({title}) => {
 							value={stateValueOne}
 							id="filled-number"
 							type="number"
-							disabled={countries.one ? countries.two ? false : true : true}
+							disabled={selectValue.one ? selectValue.two ? false : true : true}
 							fullWidth={true}
 							InputLabelProps={{
 								shrink: true,
@@ -99,6 +107,7 @@ const Calculator = ({title}) => {
 
 				<div className={cs.container_icon}>
 					<FaExchangeAlt
+						onClick={() => changeSelect()}
 						className={cs.icon}
 					/>
 				</div>
@@ -106,7 +115,7 @@ const Calculator = ({title}) => {
 				<div className={cs.calculator2}>
 
 					<div className={cs.container_select}>
-						<CustomSelect get={SelectTwo}/>
+						<CustomSelect setState={getSelectValueTwo} state={selectValue.two}/>
 					</div>
 
 					<div className={cs.container_input}>
@@ -114,7 +123,7 @@ const Calculator = ({title}) => {
 							onChange={e => setInputTwo(e.target.value)}
 							value={stateValueTwo}
 							id="filled-number"
-							disabled={countries.one ? countries.two ? false : true : true}
+							disabled={selectValue.one ? selectValue.two ? false : true : true}
 							type="number"
 							fullWidth={true}
 							InputLabelProps={{
@@ -126,7 +135,7 @@ const Calculator = ({title}) => {
 
 				</div>
 			</div>
-			<small>Официальный курс доллара Национального Банка КР</small>
+			<small>Официальный курс Национального Банка КР (НБКР)</small>
 		</div>
 	);
 };

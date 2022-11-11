@@ -55,10 +55,24 @@ const selectItems = [
 	},
 ]
 
-const CustomSelect = ({get}) => {
+const value = {
+	USA: selectItems[0],
+	EURO: selectItems[1],
+	RUB: selectItems[2],
+	TKZ: selectItems[3],
+	KGS: selectItems[4],
+}
+
+const CustomSelect = ({setState , state}) => {
+
 	return (
 		<React.Fragment>
-			<Select onChange={e => get(e.value)} placeholder={'Выберите валюту'} options={selectItems}/>
+			<Select
+				value={value[state]}
+				onChange={e => setState(e.value)}
+				placeholder={'Выберите валюту'}
+				options={selectItems}
+			/>
 		</React.Fragment>
 	)
 }
