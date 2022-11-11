@@ -6,11 +6,7 @@ import Calculator from "./components/Calculator";
 
 const Main = () => {
 	const data = useSelector(state => state.data)
-	console.log(data)
-
 	const end = Object.keys(data)
-
-	console.log(end)
 
 	return (
 		<div className={cs.main}>
