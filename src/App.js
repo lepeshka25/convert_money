@@ -3,6 +3,7 @@ import Main from "./page/Main";
 import {CircularProgress} from "@mui/material";
 import {useSelector} from "react-redux";
 import {progressSelect} from "./store/progress/progress-select";
+import Header from "./components/Header";
 import cs from './app.module.scss'
 
 const App = () => {
@@ -27,6 +28,7 @@ const App = () => {
 
 	return (
 		<div className={cs.app}>
+			<Header/>
 			<Main/>
 		</div>
 	);

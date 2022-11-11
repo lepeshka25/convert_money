@@ -33,6 +33,7 @@ const Calculator = () => {
 			setStateValueTwo(0)
 			setStateValueOne(0)
 		}
+		// eslint-disable-next-line
 	}, [inputOne, selectValue])
 
 	React.useEffect(() => {
@@ -52,6 +53,7 @@ const Calculator = () => {
 			setStateValueTwo(0)
 			setStateValueOne(0)
 		}
+		// eslint-disable-next-line
 	}, [inputTwo, selectValue])
 
 	function changeSelect(){

@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.min';
 
 import NumericAxisStockChart from "./stockchart/StockChart with Range Selector";
 

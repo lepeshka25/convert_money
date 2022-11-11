@@ -2,8 +2,19 @@
   width: 100%;
   padding: 30px 0;
 
-  .container_select {
-    width: 300px;
-    margin: 0 auto;
+  .container_calculator {
+    display: flex;
+    justify-content: center;
   }
+
+  .container {
+    width: 70%;
+    margin: 0 auto;
+
+    .container_diagram {
+      margin-bottom: 20px;
+    }
+
+  }
+
 }
