@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CanvasJSReact from './canvasjs.stock.react';
+// eslint-disable-next-line no-unused-vars
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
