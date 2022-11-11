@@ -14,43 +14,42 @@ const Calculator = ({title}) => {
 	const [countries , setCountries] = React.useState({})
 
 	const data = useSelector(countriesSelect)
-	console.log(data)
-
-	// const newData = React.useCallback(() => {
-	// 	return data.DOLLAR[data.DOLLAR.length - 1]
-	// }, [data])
-
-	// console.log(newData())
 
 	React.useEffect(() => {
-		if(countries.one === "KGS" && countries.two === "KGS"){
+		if(countries.one === countries.two){
 			setStateValueTwo(inputOne)
 			setStateValueOne(inputOne)
 		}else if(countries.one === "KGS"){
-			setStateValueTwo((inputOne / data[countries.two]).toFixed(5))
+			setStateValueTwo((inputOne / data[countries.two]?.money).toFixed(5))
 			setStateValueOne(inputOne)
 		}else if(countries.two === "KGS"){
-			setStateValueTwo((inputOne * data[countries.one]).toFixed(5))
+			setStateValueTwo((inputOne * data[countries.one]?.money).toFixed(5))
+			setStateValueOne(inputOne)
+		}else if(countries.one && countries.two) {
+			setStateValueTwo((inputOne * data[countries.one]?.money / data[countries.two]?.money).toFixed(5))
 			setStateValueOne(inputOne)
 		}else {
-			setStateValueTwo((inputOne * data[countries.one] / data[countries.two]).toFixed(5))
-			setStateValueOne(inputOne)
+			setStateValueTwo(0)
+			setStateValueOne(0)
 		}
 	}, [inputOne, countries])
 
 	React.useEffect(() => {
-		if(countries.one === "KGS" && countries.two === "KGS"){
+		if(countries.one === countries.two){
 			setStateValueOne(inputTwo)
 			setStateValueTwo(inputTwo)
 		}else if(countries.one === "KGS"){
-			setStateValueOne((inputTwo * data[countries.two]).toFixed(5))
+			setStateValueOne((inputTwo * data[countries.two]?.money).toFixed(5))
 			setStateValueTwo(inputTwo)
 		}else if(countries.two === "KGS"){
-			setStateValueOne((inputTwo / data[countries.one]).toFixed(5))
+			setStateValueOne((inputTwo / data[countries.one]?.money).toFixed(5))
+			setStateValueTwo(inputTwo)
+		}else if(countries.one && countries.two) {
+			setStateValueOne((inputTwo / data[countries.one]?.money * data[countries.two]?.money).toFixed(5))
 			setStateValueTwo(inputTwo)
 		}else {
-			setStateValueOne((inputTwo / data[countries.one] * data[countries.two]).toFixed(5))
-			setStateValueTwo(inputTwo)
+			setStateValueTwo(0)
+			setStateValueOne(0)
 		}
 	}, [inputTwo, countries])
 
@@ -64,7 +63,15 @@ const Calculator = ({title}) => {
 
 	return (
 		<div className={cs.calculator}>
-			{/*<h1 className={cs.title}>Официальный курс доллара Национального Банка КР</h1>*/}
+			{
+				countries.one
+					? countries.two
+						? (
+								<h1 className={cs.title}>{data[countries.one]?.title} в {data[countries.two]?.title}</h1>
+							)
+						: null
+					: null
+			}
 			<div className={cs.calculator_container}>
 
 				<div className={cs.calculator1}>
@@ -79,7 +86,7 @@ const Calculator = ({title}) => {
 							value={stateValueOne}
 							id="filled-number"
 							type="number"
-							disabled={countries.one ? false : true}
+							disabled={countries.one ? countries.two ? false : true : true}
 							fullWidth={true}
 							InputLabelProps={{
 								shrink: true,
@@ -91,7 +98,9 @@ const Calculator = ({title}) => {
 				</div>
 
 				<div className={cs.container_icon}>
-					<FaExchangeAlt className={cs.icon}/>
+					<FaExchangeAlt
+						className={cs.icon}
+					/>
 				</div>
 
 				<div className={cs.calculator2}>
@@ -105,7 +114,7 @@ const Calculator = ({title}) => {
 							onChange={e => setInputTwo(e.target.value)}
 							value={stateValueTwo}
 							id="filled-number"
-							disabled={countries.two ? false : true}
+							disabled={countries.one ? countries.two ? false : true : true}
 							type="number"
 							fullWidth={true}
 							InputLabelProps={{

@@ -42,10 +42,26 @@ export const middleWareGetDataBase = () => (dispatch , getState , {axios}) => {
 									dispatch(dataActionTenge(data4))
 									dispatch(updateActionProgress(false))
 									dispatch(updateActionCountries({
-										USA: data1[data1.length - 1].y,
-										EURO: data2[data2.length - 1].y,
-										RUB: data3[data3.length - 1].y,
-										KZT: data4[data4.length - 1].y,
+										USA: {
+											money: data1[data1.length - 1].y,
+											title: 'Доллар США'
+										},
+										EURO: {
+											money: data2[data2.length - 1].y,
+											title: 'Евро'
+										},
+										RUB: {
+											money: data3[data3.length - 1].y,
+											title: 'Российский рубль'
+										},
+										KZT: {
+											money: data4[data4.length - 1].y,
+											title: 'Казахстанский тенге'
+										},
+										KGS: {
+											money: 0,
+											title: 'Кыргызский сом'
+										},
 									}))
 								})
 						})
