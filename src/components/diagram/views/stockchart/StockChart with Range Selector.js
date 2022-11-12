@@ -3,17 +3,26 @@ import CanvasJSReact from '../../assets/canvasjs.stock.react';
 var CanvasJSStockChart = CanvasJSReact.CanvasJSStockChart;
  
 class StockChartWithRangeSelector extends Component {
-	constructor(props) {
-		super(props);
-		this.state = { dataPoints: [], isLoaded: false };
-	}
+		constructor(props) {
+			super(props);
+			this.state = { dataPoints: [], isLoaded: false };
+		}
 	 
 	  componentDidMount() {
 			this.setState({
 				isLoaded: true,
-				dataPoints: this.props.props.props
+				dataPoints: this.props.props
 	  	});
 	  }
+
+		componentDidUpdate(state , prevState){
+			if(this.props.props[0].valet !== state.props[0].valet){
+				this.setState({
+					isLoaded: true,
+					dataPoints: this.props.props
+				});
+			}
+		}
 	 
 	  render() {
 		const options = {
@@ -53,22 +62,22 @@ class StockChartWithRangeSelector extends Component {
 			  }
 			},
 			axisY: {
-				title: `Покупка ${this.props.props.props[0].valet}`,
+				title: `Покупка ${this.props.props[0].valet}`,
 			  prefix: "",
 			  crosshair: {
 				enabled: true,
 				snapToDataPoint: true,
-				valueFormatString: this.props.props.props[0].valet !== 'тенге' ? "#,###.####" : '0.####'
+				valueFormatString: this.props.props[0].valet !== 'тенге' ? "#,###.####" : '0.####'
 			  }
 			},
 			toolTip: {
 			  shared: true
 			},
 			data: [{
-			  name: `Покупка ${this.props.props.props[0].valet}`,
+			  name: `Покупка ${this.props.props[0].valet}`,
 			  type: "splineArea",
 			  color: "#3576a8",
-			  yValueFormatString: this.props.props.props[0].valet !== 'тенге' ? "#,###.####" : '0.####',
+			  yValueFormatString: this.props.props[0].valet !== 'тенге' ? "#,###.####" : '0.####',
 			  xValueFormatString: "MMM DD YYYY",
 			  dataPoints : this.state.dataPoints
 			}]

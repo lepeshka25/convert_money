@@ -63,7 +63,12 @@
 
   .container {
     width: 90%;
-    margin: 0 auto;
+    margin: 50px auto;
+
+    @media (min-width: 1440px) {
+      width: 1440px;
+      margin: 50px auto;
+    }
 
     .container_diagram {
       margin: 50px 0;

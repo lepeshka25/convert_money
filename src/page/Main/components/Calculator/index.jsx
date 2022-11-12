@@ -2,9 +2,10 @@ import React from 'react';
 import CustomSelect from "../../../../UI/CustomSelect";
 import {TextField} from "@mui/material";
 import {FaExchangeAlt} from "react-icons/fa";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {countriesSelect} from "../../../../store/countries/countries-select";
 import cs from './style.module.scss'
+import {diagramActionData} from "../../../../store/diagram/diagram-action";
 
 const Calculator = () => {
 	const [inputOne , setInputOne] = React.useState(0)
@@ -14,7 +15,16 @@ const Calculator = () => {
 
 	const [selectValue , setSelectValue] = React.useState({})
 
+	const dispatch = useDispatch()
 	const data = useSelector(countriesSelect)
+
+	const diagramData = useSelector(state => state.data)
+
+	React.useEffect(() => {
+		if(selectValue.two && selectValue.two !== 'KGS'){
+			dispatch(diagramActionData(diagramData[selectValue['two']]))
+		}
+	}, [selectValue])
 
 	React.useEffect(() => {
 		if(selectValue.one === selectValue.two){

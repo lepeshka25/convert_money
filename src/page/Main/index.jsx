@@ -1,16 +1,13 @@
 import React from 'react';
-import cs from './style.module.scss'
 import {useSelector} from "react-redux";
 import Template from "../../components/diagram/views/stockchart/Template";
-// import Calculator from "./components/Calculator";
 import LineChart from "../../components/diagram/assets/canvasjs.react";
 import Calculator from "./components/Calculator";
+import cs from './style.module.scss'
 
 const Main = () => {
-	const data = useSelector(state => state)
-	const end = Object.keys(data)
+	const data = useSelector(state => state.countries)
 
-	console.log(data.countries)
 	// console.log(data)
 
 	return (
@@ -23,7 +20,7 @@ const Main = () => {
 
 				<div className={cs.container_item}>
 					{
-						Object.values(data.countries).map(item => (
+						Object.values(data).map(item => (
 							<div key={item.title} className={cs.item}>
 								<div className={cs.container_left}>
 									{item.title}
@@ -35,6 +32,10 @@ const Main = () => {
 						))
 					}
 				</div>
+			</div>
+
+			<div className={cs.container}>
+				<Template/>
 			</div>
 
 			{/*<div className={cs.container}>*/}

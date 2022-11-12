@@ -5,7 +5,7 @@ export const dataReducer = (state = [] , action) => {
 		case ADD_DATA_DOLLAR:{
 			return {
 				...state,
-				DOLLAR: action.payload
+				USA: action.payload
 			}
 		}
 		case ADD_DATA_EURO:{
@@ -17,13 +17,13 @@ export const dataReducer = (state = [] , action) => {
 		case ADD_DATA_RUBLE:{
 			return {
 				...state,
-				RUBLE: action.payload
+				RUB: action.payload
 			}
 		}
 		case ADD_DATA_TENGE:{
 			return {
 				...state,
-				TENGE: action.payload
+				KZT: action.payload
 			}
 		}
 		default: {

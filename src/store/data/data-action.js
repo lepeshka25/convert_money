@@ -2,6 +2,7 @@ import useSort from "../../hook/useSort";
 import {ADD_DATA_DOLLAR, ADD_DATA_EURO, ADD_DATA_RUBLE, ADD_DATA_TENGE} from "./data-constant";
 import {updateActionProgress} from "../progress/progress-action";
 import {updateActionCountries} from "../countries/countries-action";
+import {diagramActionData} from "../diagram/diagram-action";
 
 const dataActionDollar = (payload) => ({
 	payload,
@@ -40,6 +41,7 @@ export const middleWareGetDataBase = () => (dispatch , getState , {axios}) => {
 								.then(res => useSort(res?.data?.data, 'тенге' , 'KG/KZT'))
 								.then(data4 => {
 									dispatch(dataActionTenge(data4))
+									dispatch(diagramActionData(data1.slice(data1.length - 365 , data1.length)))
 									dispatch(updateActionProgress(false))
 									dispatch(updateActionCountries({
 										USA: {
