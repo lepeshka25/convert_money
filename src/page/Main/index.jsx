@@ -1,14 +1,11 @@
 import React from 'react';
 import {useSelector} from "react-redux";
 import Template from "../../components/diagram/views/stockchart/Template";
-import LineChart from "../../components/diagram/assets/canvasjs.react";
 import Calculator from "./components/Calculator";
 import cs from './style.module.scss'
 
 const Main = () => {
 	const data = useSelector(state => state.countries)
-
-	// console.log(data)
 
 	return (
 		<div className={cs.main}>
@@ -38,43 +35,8 @@ const Main = () => {
 				<Template/>
 			</div>
 
-			{/*<div className={cs.container}>*/}
-			{/*	{*/}
-			{/*		end.map((item) => (*/}
-			{/*					<div key={item} className={cs.container_diagram}>*/}
-			{/*						<Template props={data[item]}/>*/}
-			{/*					</div>*/}
-			{/*				))*/}
-			{/*	}*/}
-			{/*</div>*/}
-
 		</div>
 	);
 };
 
 export default React.memo(Main);
-
-
-{/*<div className={cs.container}>*/}
-{/*	{data && <LineChart data={data}/>}*/}
-{/*</div>*/}
-
-{/*<div className={cs.container_calculator}>*/}
-{/*	<Calculator />*/}
-{/*</div>*/}
-
-{/*<div className={cs.container}>*/}
-{/*	<div className={cs.container_diagram}>*/}
-{/*		<Template props={data[end[0]]}/>*/}
-{/*	</div>*/}
-{/*</div>*/}
-
-{/*<div className={cs.container}>*/}
-{/*	{*/}
-{/*		end.map((item) => (*/}
-{/*					<div key={item} className={cs.container_diagram}>*/}
-{/*						<Template props={data[item]}/>*/}
-{/*					</div>*/}
-{/*				))*/}
-{/*	}*/}
-{/*</div>*/}
