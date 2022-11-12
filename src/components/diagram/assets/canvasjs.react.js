@@ -6,8 +6,9 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 class LineChart extends Component {
 	componentDidMount() {
-		const data = this.props.data.DOLLAR
-		this.dataBase = data?.slice(data.length - 15 , data.length)
+		console.log(this.props.data.slice(this.props.data.length - 15 , this.props.data.length))
+		this.dataBase = this.props.data.slice(this.props.data.length - 15 , this.props.data.length)
+		console.log(this.dataBase)
 	}
 
 	render() {
@@ -36,11 +37,11 @@ class LineChart extends Component {
 				type: "line",
 				// toolTipContent: "y: <span>{y}</span> , x: <span>{x}</span>",
 				toolTipContent: "{x}: {y}",
-				dataPoints: this.dataBase
+				dataPoints: this.dataBase && this.dataBase
 			}]
 		}
 		return (
-			<div>
+			<div style={{width: '100%' , height: '100%'}}>
 				<CanvasJSChart options = {options}/>
 			</div>
 		);

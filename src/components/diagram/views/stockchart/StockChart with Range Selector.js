@@ -38,11 +38,11 @@ class StockChartWithRangeSelector extends Component {
 				}
 			},
 		  title:{
-				text: `Покупка ${this.props.props.props[0].valet}`
+				// text: `Покупка ${this.props.props.props[0].valet}`
 		  },
 		  theme: "light2",
 		  subtitles: [{
-			text: this.props.props.props[0].kod
+				// text: this.props.props.props[0].kod
 		  }],
 		  charts: [{
 			axisX: {
@@ -53,7 +53,7 @@ class StockChartWithRangeSelector extends Component {
 			  }
 			},
 			axisY: {
-			  title: "",
+				title: `Покупка ${this.props.props.props[0].valet}`,
 			  prefix: "",
 			  crosshair: {
 				enabled: true,
