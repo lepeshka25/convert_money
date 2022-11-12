@@ -4,8 +4,8 @@ import {TextField} from "@mui/material";
 import {FaExchangeAlt} from "react-icons/fa";
 import {useDispatch, useSelector} from "react-redux";
 import {countriesSelect} from "../../../../store/countries/countries-select";
-import cs from './style.module.scss'
 import {diagramActionData} from "../../../../store/diagram/diagram-action";
+import cs from './style.module.scss'
 
 const Calculator = () => {
 	const [inputOne , setInputOne] = React.useState(0)
@@ -24,6 +24,7 @@ const Calculator = () => {
 		if(selectValue.two && selectValue.two !== 'KGS'){
 			dispatch(diagramActionData(diagramData[selectValue['two']]))
 		}
+		// eslint-disable-next-line
 	}, [selectValue])
 
 	React.useEffect(() => {
